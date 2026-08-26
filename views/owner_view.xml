@@ -1,0 +1,58 @@
+<odoo>
+    <!-- 1. واجهة القائمة List View -->
+    <record id="owner_view_tree" model="ir.ui.view">
+        <field name="name">owner.list</field>
+        <field name="model">owner</field>
+        <field name="arch" type="xml">
+            <list multi_edit="1" create="1" edit="1" delete="1">
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="address"/>
+                <field name="property_ids"/>
+
+            </list>
+        </field>
+    </record>
+
+    <!-- 2. واجهة النموذج Form View -->
+  <record id="owner_view_form" model="ir.ui.view">
+    <field name="name">owner.form</field>
+    <field name="model">owner</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <!-- العنوان الرئيسي -->
+                <div class="oe_title">
+                    <label for="name"/>
+                    <h1>
+                        <field name="name" required="1"/>
+                    </h1>
+                </div>
+
+                <!-- البيانات العامة -->
+                <group string="General Info">
+                    <group>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="property_ids"/>
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+    <!-- 3. الأكشن Action -->
+    <record id="owner_action" model="ir.actions.act_window">
+        <field name="name">Owner</field>
+        <field name="res_model">owner</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- 4. المنيو Menu -->
+    <menuitem
+        id="owner_menu_item"
+        name="Owner"
+        parent="Configation_menu"
+        action="owner_action"
+    />
+</odoo>
