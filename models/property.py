@@ -3,7 +3,6 @@ from email.policy import default
 from odoo import fields, models,api
 from odoo.exceptions import ValidationError
 
-
 class Property(models.Model):
     _name = "property"
     _inherit = ['mail.thread','mail.activity.mixin']
@@ -73,7 +72,6 @@ class Property(models.Model):
 #مشان جملة ال CREATE
     #         @api.model_create_multi
     #        def create(self, vals_list):
-    #            print("inside create method")
 #          res = super(Property, self).create(vals_list)
 #           return res
 #مشان جملة ال READE

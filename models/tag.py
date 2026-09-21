@@ -1,8 +1,11 @@
 from odoo import fields, models
 
 
-class TAg(models.Model):
+class Tag(models.Model):
     _name = "tag"
 
     name = fields.Char()
+    description = fields.Text()
+
+
 
