@@ -12,6 +12,7 @@
                 <field name="selling_price"/>
                 <field name="state"/>
                 <field name="garden"/>
+                <field name="active"/>
                 <field name="bedroom" optional="show"/>
                 <field name="garage" optional="hide"/>
             </list>
@@ -62,15 +63,27 @@
                             <field name="garage"/>
                             <field name="garden_orientation"/>
                             <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="active"/>
                         </group>
                     </group>
 
                     <group>
                         <field name="description"/>
                     </group>
+  <!-- انا عملت ال property line واستخدمت editable مشان يسهل ادخال االبيانات وهاي هي الطريقة مشان تعمل line  -->
+                    <notebook>
+                        <page string="Bedrooms">
+                            <field name="property_line_ids">
+                                <list editable="bottom">
+                                    <field name="description"/>
+                                    <field name="area"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
 
-                <!-- الـ Chatter في Odoo 19 ينزل بالأسفل تلقائياً بمجرد إضافة <chatter/> خارج الـ sheet -->
+ <!-- الـ Chatter في Odoo 19 ينزل بالأسفل تلقائياً بمجرد إضافة <chatter/> خارج الـ sheet -->
                 <chatter/>
             </form>
         </field>
@@ -97,7 +110,15 @@
             </search>
         </field>
     </record>
-
+    <record id="property_closed_server_action" model="ir.actions.server">
+        <field name="name">Closed</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_closed()
+        </field>
+     </record>
     <!-- 5. القائمة Menu -->
     <menuitem
         id="property_menu_item"

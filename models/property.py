@@ -7,6 +7,7 @@ class Property(models.Model):
     _name = "property"
     _inherit = ['mail.thread','mail.activity.mixin']
 
+
     name = fields.Char(required=True)
     description = fields.Text(tracking=1)
     postcode = fields.Char(required=True)
@@ -30,16 +31,17 @@ class Property(models.Model):
     state=fields.Selection(
         [("draft", "draft"),
          ("pending", "Pending"),
-         ("sold", "Sold"),]
+         ("sold", "Sold"),
+         ("closed", "Closed"),] , default='draft'
     )
 
     owner_id = fields.Many2one('owner')
     tag_ids = fields.Many2many('tag')
     owner_address = fields.Char(related='owner_id.address')
     owner_phone = fields.Char(related='owner_id.phone')
-
+    active = fields.Boolean(default=True)
     _sql_constraints = [('unique_name', 'unique("name")', 'This name is exist ')]
-
+    property_line_ids = fields.One2many('property.line', 'property_id')
     @api.constrains('bedroom')
     def _check_bedroom_greater_zero(self):
      for rec in self:
@@ -55,8 +57,11 @@ class Property(models.Model):
             rec.state = 'pending'
     def action_sold(self):
         for rec in self:
-            rec.write({'state':'sold'})
+            rec.state = 'sold'
 
+    def action_closed(self):
+        for rec in self:
+            rec.state = 'closed'
     @api.depends('expected_price','selling_price')
     def _compute_diff(self):
         for rec in self:
@@ -89,3 +94,9 @@ class Property(models.Model):
 #def unlink(self):
     # super(Property, self).unlink()
 # print("inside unlink method")
+class PropertyLine(models.Model):
+    _name='property.line'
+    area = fields.Float()
+    description = fields.Char()
+    property_id = fields.Many2one('property')
+
