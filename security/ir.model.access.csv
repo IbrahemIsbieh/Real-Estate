@@ -4,3 +4,6 @@ access_owner_user,owner.user,model_owner,base.group_user,1,1,1,1
 access_tag_user,tag.user,model_tag,base.group_user,1,1,1,1
 access_property_line_user,property.line.user,model_property_line,base.group_user,1,1,1,1
 access_building_user,building.user,model_building,base.group_user,1,1,1,1
+access_property_history_user,property_history.user,model_property_history,base.group_user,1,1,1,1
+access_change_state_user,change_state.user,model_change_state,base.group_user,1,1,1,1
+access_property_history_line_user,property_history_line.user,model_property_history_line,base.group_user,1,1,1,1

@@ -4,12 +4,14 @@
         <field name="name">property.list</field>
         <field name="model">property</field>
         <field name="arch" type="xml">
-            <list>
+            <list class="header_custom" decoration-danger="(is_late)">
                 <field name="owner_id"/>
                 <field name="postcode"/>
                 <field name="name"/>
                 <field name="date_availability"/>
+                <field name="expected_selling_date"/>
                 <field name="selling_price"/>
+                <field name="is_late" invisible="1"/>
                 <field name="state"/>
                 <field name="garden"/>
                 <field name="active"/>
@@ -27,43 +29,53 @@
             <form>
                 <!-- الـ header خارج الـ sheet -->
                 <header>
-                    <button name="action_draft" type="object" class="btn-primary" string="Draft" invisible="state == 'draft'"/>
+
+                    <button name="action_draft" type="object" class="btn-primary" string="Draft" invisible="state in ('draft','closed')" />
                     <button name="action_pending" type="object" class="btn-secondary" string="Pending" invisible="state != 'draft'"/>
                     <button name="action_sold" type="object" class="btn-success" string="Sold" invisible="state != 'pending'"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,sold"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,sold,closed"/>
                 </header>
 
                 <sheet>
                     <div class="oe_title">
-                        <label for="name"/>
+                        <label for="ref"/>
                         <h1>
-                            <field name="name" placeholder="Property Name"/>
+                            <field name="ref" readonly="state == 'closed'"/>
                         </h1>
                     </div>
-
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h3>
+                            <field name="name" readonly="state == 'closed'"/>
+                        </h3>
+                    </div>
                     <group>
                         <!-- العمود الأول (يسار) -->
                         <group string="GENERAL INFO.">
-                            <field name="date_availability" required="1"/>
-                            <field name="postcode"/>
-                            <field name="expected_price"/>
-                            <field name="selling_price"/>
-                            <field name="diff"/>
-                            <field name="bedroom"/>
-                            <field name="living_area"/>
-                            <field name="facades"/>
+                            <field name="create_time" readonly="1"  />
+                            <field name="next_time"/>
+                            <field name="date_availability" required="1" readonly="state == 'closed'"/>
+                            <field name="postcode" readonly="state == 'closed'"/>
+                            <field name="expected_price" readonly="state == 'closed'"/>
+                            <field name="selling_price" readonly="state == 'closed'"/>
+                            <field name="diff" readonly="state == 'closed'"/>
+                            <field name="bedroom" readonly="state == 'closed'"/>
+                            <field name="living_area" readonly="state == 'closed'"/>
+                            <field name="facades" readonly="state == 'closed'"/>
                         </group>
 
                         <!-- العمود الثاني (يمين) -->
                         <group string="ADDITIONAL INFO.">
-                            <field name="owner_id"/>
-                            <field name="owner_address"/>
-                            <field name="owner_phone"/>
-                            <field name="garden"/>
-                            <field name="garage"/>
-                            <field name="garden_orientation"/>
-                            <field name="tag_ids" widget="many2many_tags"/>
-                            <field name="active"/>
+                            <field name="owner_id" readonly="state == 'closed'"/>
+                            <field name="owner_address" readonly="state == 'closed'"/>
+                            <field name="owner_phone" readonly="state == 'closed'"/>
+                            <field name="garden" readonly="state == 'closed'"/>
+                            <field name="garage" readonly="state == 'closed'"/>
+                            <field name="garden_orientation" readonly="state == 'closed'"/>
+                            <field name="tag_ids" widget="many2many_tags" readonly="state == 'closed'"/>
+                            <field name="active" readonly="state == 'closed'"/>
+                            <field name="expected_selling_date" readonly="state == 'closed'"/>
+                            <field name="is_late" readonly="state == 'closed'"/>
                         </group>
                     </group>
 
@@ -110,6 +122,8 @@
             </search>
         </field>
     </record>
+
+    <!-- server actions record closed -->
     <record id="property_closed_server_action" model="ir.actions.server">
         <field name="name">Closed</field>
         <field name="model_id" ref="model_property"/>
@@ -119,6 +133,28 @@
             action = records.action_closed()
         </field>
      </record>
+
+    <!-- server actions record change_state_wizard-->
+    <record id="change_state_server_action" model="ir.actions.server">
+        <field name="name">Change State</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="binding_model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_open_change_state_wizard()
+        </field>
+     </record>
+
+    <!-- Automated action record  -->
+    <record id="property_selling_date_action_cron" model="ir.cron">
+        <field name="name">property_selling_date</field>
+        <field name="model_id" ref="model_property"/>
+        <field name="state">code</field>
+        <field name="code">model.check_expected_selling_date()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
     <!-- 5. القائمة Menu -->
     <menuitem
         id="property_menu_item"
