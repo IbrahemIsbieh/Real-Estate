@@ -101,7 +101,12 @@ class Property(models.Model):
         property_ids = self.search([])
         for rec in property_ids:
             if rec.expected_selling_date and rec.expected_selling_date < fields.date.today():
-                rec.is_late = True
+               rec.is_late = True
+
+    def action(self):
+        print(self.env['property'].search([('name','!=','Property1')])
+)
+
 
     @api.model
     def create(self, vals):

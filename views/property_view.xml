@@ -30,6 +30,7 @@
                 <!-- الـ header خارج الـ sheet -->
                 <header>
 
+                    <button name="action" type="object" class="btn-success" string="Action"  />
                     <button name="action_draft" type="object" class="btn-primary" string="Draft" invisible="state in ('draft','closed')" />
                     <button name="action_pending" type="object" class="btn-secondary" string="Pending" invisible="state != 'draft'"/>
                     <button name="action_sold" type="object" class="btn-success" string="Sold" invisible="state != 'pending'"/>

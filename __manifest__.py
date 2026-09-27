@@ -5,6 +5,7 @@
     'version': '19.0.0.1.0',
     'depends': ['base','account','sale','mail','contacts'],
     'data': [
+        'security/security_group.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'views/baes_menu.xml',

@@ -21,6 +21,7 @@
         id="Configation_menu"
         name="Configation"
         parent="real_estate_root_menu"
+        groups="property_manager_group"
     />
 
 

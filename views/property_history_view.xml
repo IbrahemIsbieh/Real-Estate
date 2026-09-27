@@ -63,5 +63,6 @@
         name="History"
         parent="properties_menu"
         action="property_history_action"
+        groups="property_manager_group"
     />
 </odoo>
