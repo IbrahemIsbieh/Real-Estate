@@ -13,7 +13,7 @@
                  <t t-foreach="docs" t-as="rec">
                      <div class="page">
 
-                            <h1>Property Report</h1>
+                            <h1 style="font-family: 'LobsterTwo-Regular';">Property Report</h1>
 
                             <br/>
 

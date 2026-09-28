@@ -16,12 +16,15 @@
         'views/res_partner_view.xml',
         'views/building_view.xml',
         'views/property_history_view.xml',
+        'views/account_view.xml',
         'wizard/change_state_wizard_view.xml',
         'reports/property_report.xml',
 
-
-
     ],
+    'assets':{
+        'web.report_assets_common':['app_onee/static/crs/fonts.css'],
+
+    },
 
     'application': True,
     'installable': True,
