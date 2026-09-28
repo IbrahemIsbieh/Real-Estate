@@ -1,5 +1,40 @@
 <odoo>
+    <record id="property_category" model="ir.module.category">
+        <field name="name">Real Estate</field>
+    </record>
+
     <record id="property_manager_group" model="res.groups">
         <field name="name">Property Manager</field>
+
     </record>
+
+    <record id="property_user_group" model="res.groups">
+        <field name="name">Property User</field>
+
+    </record>
+
+    <record id="property_rule_by_user" model="ir.rule">
+        <field name="name">property.rule.by.user</field>
+        <field name="model_id" ref="app_onee.model_property"/>
+        <field name="domain_force">[('create_uid','=','user.id')]</field>
+         <field name="groups" eval="[(4, ref('app_onee.property_user_group'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+
+    </record>
+
+<!--    هاذ ال record بيعمل انه ال manager group بيكون معاه الصلاحية يشوف كل ال record-->
+    <record id="property_rule_manager" model="ir.rule">
+    <field name="name">Property Manager: All Properties</field>
+    <field name="model_id" ref="app_onee.model_property"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+    <field name="groups" eval="[(4, ref('app_onee.property_manager_group'))]"/>
+    <field name="perm_read" eval="True"/>
+    <field name="perm_write" eval="True"/>
+    <field name="perm_create" eval="True"/>
+    <field name="perm_unlink" eval="True"/>
+</record>
+
 </odoo>
