@@ -3,6 +3,7 @@ from email.policy import default
 from odoo import fields, models,api
 from odoo.exceptions import ValidationError
 from datetime import  timedelta
+import requests
 from odoo.release import description
 
 
@@ -139,6 +140,23 @@ class Property(models.Model):
         action['res_id'] = self.owner_id.id
         action['views'] = [[view_id,'form']]
         return action
+
+
+    # ----------------------------------------------------------------------------------------------------------------
+# هاي عملتها مشان اربط ال api  مع ال موديل واتاد انو شغال وطبعا في الها button داخل ال view
+    # def get_properties(self):
+    #     payload=dict()
+    #     try:
+    #         response = requests.get('http://SW-PC-08.software.local:8069/v1/property',data=payload)
+    #         if response.status_code == 200:
+    #             print("successful")
+    #         else:
+    #             print("fail")
+    #     except Exception as error:
+    #         raise ValidationError(str(error))
+    #
+
+# ---------------------------------------------------------------------------------------
 #مشان جملة ال CREATE
     #         @api.model_create_multi
     #        def create(self, vals_list):
