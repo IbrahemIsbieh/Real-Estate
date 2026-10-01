@@ -141,6 +141,13 @@ class Property(models.Model):
         action['views'] = [[view_id,'form']]
         return action
 
+    def property_xlsx_report(self):
+        return {
+            'type':'ir.actions.act_url',
+            'url':f'/property/excel/report/{self.env.context.get("active_id")}',
+            'target':'new',
+        }
+
 
     # ----------------------------------------------------------------------------------------------------------------
 # هاي عملتها مشان اربط ال api  مع ال موديل واتاد انو شغال وطبعا في الها button داخل ال view

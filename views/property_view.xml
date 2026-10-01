@@ -5,6 +5,9 @@
         <field name="model">property</field>
         <field name="arch" type="xml">
             <list class="header_custom" decoration-danger="(is_late)">
+                <header>
+                    <button name="property_xlsx_report" type="object" string="Property Excel Report" class="btn-primary"/>
+                </header>
                 <field name="owner_id"/>
                 <field name="postcode"/>
                 <field name="name"/>
@@ -31,7 +34,7 @@
                 <header>
 
                     <button name="action" type="object" class="btn-success" string="Action"  />
-                    <button name="get_properties" type="object" class="btn-secondary" string="Tests Call Get properties"  />
+<!--                    <button name="get_properties" type="object" class="btn-secondary" string="Tests Call Get properties"  />-->
                     <button name="action_draft" type="object" class="btn-primary" string="Draft" invisible="state in ('draft','closed')" />
                     <button name="action_pending" type="object" class="btn-secondary" string="Pending" invisible="state != 'draft'"/>
                     <button name="action_sold" type="object" class="btn-success" string="Sold" invisible="state != 'pending'"/>
