@@ -28,6 +28,8 @@
         'app_onee/static/src/components/listview/listView.css',
         'app_onee/static/src/components/listview/listView.js',
         'app_onee/static/src/components/listview/listView.xml',
+        'app_onee/static/src/components/formView/formview.js',
+        'app_onee/static/src/components/formView/formview.xml',
     ],
 },
     'application': True,

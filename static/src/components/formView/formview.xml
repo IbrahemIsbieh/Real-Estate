@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="app_onee.formView" owl="1">
+        <div class="p-3">
+            <div class="o_field_widget mb-3">
+                <label class="o_form_label">Name</label>
+                <input class="o_input form-control" t-model="state.name" placeholder="Enter property name"/>
+            </div>
+            <div class="o_field_widget mb-3">
+                <label>Postcode</label>
+                <input class="o_input form-control" t-model="state.postcode" placeholder="Enter property postcode"/>
+            </div>
+             <div class="o_field_widget mb-3">
+                <label>Date Availability</label>
+                <input class="o_input form-control" t-model="state.date_availability" type="date" placeholder="Enter property Date Availability"/>
+             </div>
+            <div class="footer">
+                <button class="btn btn-primary me-2" t-on-click="createRecord">Save</button>
+                <button class="btn btn-secondary me-2" t-on-click="cancel">Cancel</button>
+            </div>
+
+
+
+        </div>
+
+    </t>
+</templates>
