@@ -1,6 +1,7 @@
 {
     'name': "App Onee",
     'author': "Ibrahem Issa",
+    'license': 'LGPL-3',
     'category': "Uncategorized",
     'version': '19.0.0.1.0',
     'depends': ['base','account','sale','mail','contacts'],
@@ -8,6 +9,7 @@
         'security/security_group.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/data.xml',
         'views/baes_menu.xml',
         'views/property_view.xml',
         'views/owner_view.xml',
@@ -21,11 +23,13 @@
         'reports/property_report.xml',
 
     ],
-    'assets':{
-        'web.report_assets_common':['app_onee/static/crs/fonts.css'],
-
-    },
-
+    'assets': {
+    'web.assets_backend': [
+        'app_onee/static/src/components/listview/listView.css',
+        'app_onee/static/src/components/listview/listView.js',
+        'app_onee/static/src/components/listview/listView.xml',
+    ],
+},
     'application': True,
     'installable': True,
 }

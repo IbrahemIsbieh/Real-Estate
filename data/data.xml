@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+<!--        هاي طريقة لانشاء record معين بس بلطريقة هاي بيزبط بس لازم تكون حاط اهم اشي ال field required مشان يزبط وبتقدر تحط اي field انتا بدك ياها -->
+        <record id="property_01" model="property">
+            <field name="name">Property01</field>
+            <field name="postcode">30303030</field>
+            <field name="description">Description of Property01</field>
+            <field name="bedroom">5</field>
+            <field name="date_availability">2026-12-20</field>
+        </record>
+         <record id="property_02" model="property">
+            <field name="name">Property02</field>
+            <field name="postcode">303030302</field>
+            <field name="description">Description of Property02</field>
+            <field name="bedroom">5</field>
+            <field name="date_availability">2026-12-21</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+/* Base styles for the listView */
+.o_kanban_dashboard {
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.o_kanban_dashboard h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #212529;
+    margin-bottom: 1rem;
+}
+
+.table-responsive {
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.o_list_table {
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+}
+
+.o_list_table th {
+    background-color: #008784; /* لون الشريط العلوي للأعمدة المشابه لـ Odoo */
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.o_data_row {
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s ease;
+}
+
+.o_data_row:hover {
+    background-color: #f1f3f5;
+}
+
+.o_data_cell {
+    padding: 10px 12px;
+    color: #495057;
+    vertical-align: middle;
+}

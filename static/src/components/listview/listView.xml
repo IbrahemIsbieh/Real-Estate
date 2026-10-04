@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="app_onee.listView" owl="1">
+        <div class="o_kanban_dashboard">
+            <div class="table-responsive">
+                <table class="o_list_table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Postcode</th>
+                            <th>Date Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <t t-foreach="state.records" t-as="record" t-key="record.id">
+                           <tr>
+                               <td><t t-esc="record.name"/></td>
+                               <td><t t-esc="record.postcode"/></td>
+                               <td><t t-esc="record.date_availability"/></td>
+                           </tr>
+
+                       </t>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </t>
+</templates>
